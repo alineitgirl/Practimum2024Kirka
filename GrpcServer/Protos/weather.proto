@@ -7,7 +7,10 @@ package weather;
 service WeatherService {
   rpc GetCurrentWeather (WeatherRequest) returns (WeatherResponse);
   rpc MonitorWeather (WeatherRequest) returns (stream WeatherResponse);
+  rpc GetCurrentWeatherArray(EmptyRequest) returns (WeatherArrayResponse);
 }
+
+message EmptyRequest {}
 
 message WeatherRequest {
   string city = 1;
@@ -18,4 +21,8 @@ message WeatherResponse {
   int32 temperature = 2;
   string description = 3;
   string timestamp = 4;
+}
+
+message WeatherArrayResponse {
+  repeated WeatherResponse data = 1;
 }
